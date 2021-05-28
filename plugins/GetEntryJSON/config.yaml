@@ -1,0 +1,12 @@
+id: GetEntryJSON
+name: GetEntryJSON
+version: 1.0.0
+description: <__trans phrase='Get entry data formatted JSON'>
+plugin_link: https://github.com/bit-part/mt-plugin-GetEntryJSON/
+doc_link: https://github.com/bit-part/mt-plugin-GetEntryJSON/blob/master/README.md
+author_name: <__trans phrase='bit part LLC'>
+author_link: https://bit-part.net/
+l10n_class: GetEntryJSON::L10N
+tags:
+    function:
+        GetEntryJSON: $GetEntryJSON::GetEntryJSON::ContextHandlers::hdlr_get_entry_json
