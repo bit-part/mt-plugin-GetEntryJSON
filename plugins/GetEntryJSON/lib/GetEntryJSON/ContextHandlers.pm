@@ -6,9 +6,9 @@ use CustomFields::Field;
 use CustomFields::Util qw(get_meta);
 
 sub hdlr_get_entry_json {
-    my ($ctx, $args) = @_;
-    my $blog_id = $ctx->stash('blog_id');
-    my $entry = $ctx->stash('entry');
+    my ( $ctx, $args ) = @_;
+    my $blog_id  = $ctx->stash('blog_id');
+    my $entry    = $ctx->stash('entry');
     my $response = $entry->column_values();
 
     my $entry_categories = $entry->categories;
@@ -25,7 +25,7 @@ sub hdlr_get_entry_json {
 
     my $terms = {
         obj_type => 'entry',
-        blog_id  => $blog_id,
+        blog_id  => ( $blog_id ? [ $blog_id, 0 ] : 0 ),
     };
     my @fields = CustomFields::Field->load($terms);
     if (@fields) {
@@ -34,10 +34,10 @@ sub hdlr_get_entry_json {
         my %custom_fields;
         foreach my $field (@fields) {
             my $basename = $field->basename;
-            my $type = $field->type;
-            my $value = $meta->{$basename};
-            if ($type eq 'datetime') {
-                if ($value =~ /(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/) {
+            my $type     = $field->type;
+            my $value    = $meta->{$basename};
+            if ( $type eq 'datetime' ) {
+                if ( $value =~ /(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/ ) {
                     $custom_fields{$basename} = {
                         type  => $type,
                         value => $value,
@@ -50,8 +50,8 @@ sub hdlr_get_entry_json {
                     };
                 }
             }
-            elsif (grep {$_ eq $type} ('file', 'image', 'video', 'audio')) {
-                if ($value =~ /mt:asset-id="(\d+)"/) {
+            elsif ( grep { $_ eq $type } ( 'file', 'image', 'video', 'audio' ) ) {
+                if ( $value =~ /mt:asset-id="(\d+)"/ ) {
                     $custom_fields{$basename} = {
                         type  => $type,
                         value => $value,

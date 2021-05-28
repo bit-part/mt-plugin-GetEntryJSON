@@ -1,6 +1,6 @@
 id: GetEntryJSON
 name: GetEntryJSON
-version: 1.0.0
+version: 1.1.0
 description: <__trans phrase='Get entry data formatted JSON'>
 plugin_link: https://github.com/bit-part/mt-plugin-GetEntryJSON/
 doc_link: https://github.com/bit-part/mt-plugin-GetEntryJSON/blob/master/README.md
